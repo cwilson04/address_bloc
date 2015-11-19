@@ -95,6 +95,32 @@ RSpec.describe AddressBook do
     
     end   
   end
+  
+  describe "adding entries from entries_2" do
+    it "imports entries from entries_2 csv file" do
+      book.import_from_csv("entries_2.csv")
+      book_size = book.entries.size
+      expect(book_size).to eq 3
+    end
+    
+    it "import the first entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "Cassie", "777-888-9999", "cassie@blocmail.com" )
+    end
+    
+    it "imports the second entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[1]
+      check_entry(entry_two, "Jane", "616-888-1212", "jane@blocmail.com")
+    end
+    
+    it "imports the third entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[2]
+      check_entry(entry_three, "Mike", "811-345-9898", "mike@blocmail.com")
+    end
+  end
 end
 
             
